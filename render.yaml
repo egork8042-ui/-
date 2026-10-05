@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: iron-schedule
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: TZ
+        value: Asia/Tomsk
+      - key: DB_PATH
+        value: /var/data/iron_schedule.db
+    disk:
+      name: iron-data
+      mountPath: /var/data
+      sizeGB: 1
